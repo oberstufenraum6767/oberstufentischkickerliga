@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOOSBALL ARENA · Oberstufenraum</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#061411;--panel:rgba(11,29,29,.78);--line:rgba(144,255,220,.13);--mint:#62f5c5;--blue:#5c9dff;--text:#effff9;--muted:#8aa9a1;--gold:#ffd66b}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 12% 15%,#0b4938 0,transparent 38%),radial-gradient(ellipse at 88% 22%,#102d62 0,transparent 40%),radial-gradient(ellipse at 50% 100%,#082c27 0,transparent 48%),#050d12;color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-50%;z-index:-1;background:linear-gradient(125deg,transparent 35%,rgba(58,255,199,.045) 50%,transparent 65%);animation:drift 16s linear infinite;pointer-events:none}
+@keyframes drift{to{transform:translate(20%,10%) rotate(12deg)}}@keyframes pulse{50%{box-shadow:0 0 28px rgba(98,245,197,.3)}}@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+*{scrollbar-color:#245c50 #071512}
+header{max-width:1200px;margin:auto;padding:30px 24px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border:1px solid #4bd9ae;border-radius:15px;display:grid;place-items:center;color:var(--mint);font-size:24px;background:rgba(44,190,143,.1);box-shadow:0 0 25px #32d6a322}
+.brand small{display:block;color:var(--mint);font-size:10px;letter-spacing:3px;font-weight:800}.brand strong{font:800 24px 'Barlow Condensed';letter-spacing:1.5px}
+.header-right{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}.live{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint)}
+main{max-width:1200px;margin:auto;padding:18px 24px 70px}.hero{padding:40px 0 28px;display:flex;justify-content:space-between;align-items:end;gap:25px}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--mint);font-weight:800}.hero h1{font:900 clamp(42px,7vw,76px)/.92 'Barlow Condensed';margin:12px 0 12px;letter-spacing:1px}.hero h1 span{color:var(--mint);text-shadow:0 0 25px #62f5c555}.hero p{color:var(--muted);margin:0;line-height:1.6;font-size:14px}.hero-tag{border:1px solid var(--line);border-radius:14px;padding:13px 17px;background:#0c201d99;color:#b8d8cf;font-size:11px;letter-spacing:1px;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 34px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(15px);box-shadow:0 15px 45px #0003}.stat{padding:18px 20px}.stat label{font-size:10px;letter-spacing:1.7px;color:var(--muted);font-weight:800}.stat strong{display:block;font:800 34px 'Barlow Condensed';margin-top:5px}.stat strong em{font-style:normal;color:var(--mint)}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 14px}.section-head h2{font:800 24px 'Barlow Condensed';letter-spacing:1px;margin:0}.section-head span{font-size:11px;color:var(--muted)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}.mode{position:relative;overflow:hidden;text-align:left;padding:24px;border-radius:19px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(16,53,45,.88),rgba(10,27,39,.9));color:var(--text);cursor:pointer;transition:.25s;min-height:160px}.mode:nth-child(2){background:linear-gradient(135deg,rgba(14,40,64,.9),rgba(11,26,35,.9))}.mode:hover{transform:translateY(-5px);border-color:#62f5c588;box-shadow:0 12px 40px #36e7b522,0 0 24px #62f5c51a}.mode-icon{font-size:28px;margin-bottom:14px}.mode h3{font:800 29px 'Barlow Condensed';margin:0 0 5px}.mode p{font-size:12px;color:var(--muted);margin:0}.mode .arrow{position:absolute;right:23px;bottom:20px;font-size:23px;color:var(--mint)}
+.content-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:17px;align-items:start}.card{padding:21px}.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end;margin:22px 0 18px}.podium-item{text-align:center;min-width:0}.podium-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:0 auto 9px;background:linear-gradient(135deg,#164c40,#142e42);border:1px solid #6af3c777;font-weight:800;font-size:14px;color:var(--mint);box-shadow:0 0 18px #62f5c522}.podium-item.first .podium-avatar{width:60px;height:60px;border-color:var(--gold);color:var(--gold);box-shadow:0 0 24px #ffd66b33}.podium-name{font-weight:700;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.podium-wins{font-size:10px;color:var(--muted);margin:4px 0 9px}.podium-block{border-radius:9px 9px 3px 3px;background:linear-gradient(180deg,#246b56,#12372f);border:1px solid #60e9bd33;padding:12px 5px;font:900 25px 'Barlow Condensed';color:#d7fff0}.first .podium-block{height:94px;background:linear-gradient(180deg,#96753a,#4c3c20);border-color:#ffd66b55;color:#ffe6a1}.second .podium-block{height:70px}.third .podium-block{height:52px}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;font-size:9px;letter-spacing:1px;color:var(--muted);padding:12px 9px;border-bottom:1px solid var(--line)}td{padding:13px 9px;border-bottom:1px solid #ffffff0b;font-size:12px}tbody tr:hover{background:#ffffff08}.rank{color:var(--muted);font-weight:800}.player{font-weight:700}.winrate{color:var(--mint);font-weight:700}.empty{text-align:center;padding:27px 10px;color:var(--muted);font-size:12px;line-height:1.7}
+.history-list{display:flex;flex-direction:column;gap:9px;margin-top:17px}.match{padding:12px;border:1px solid #ffffff10;border-radius:12px;background:#ffffff05;display:flex;justify-content:space-between;gap:12px;align-items:center}.match strong{display:block;font-size:12px}.match small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.match .score{color:var(--mint);font:800 18px 'Barlow Condensed';white-space:nowrap}.muted-btn,.danger-btn{border:1px solid var(--line);background:#ffffff08;color:#bdd8d0;padding:9px 12px;border-radius:10px;font-size:10px;font-weight:700;cursor:pointer;transition:.2s}.muted-btn:hover,.danger-btn:hover{border-color:var(--mint);color:var(--mint);box-shadow:0 0 15px #62f5c522}.danger-btn{border-color:#ff767633;color:#ff9b9b}.danger-btn:hover{border-color:#ff7677;color:#ffb1b1;box-shadow:0 0 15px #ff767722}
+footer{max-width:1200px;margin:0 auto;padding:0 24px 30px;color:#66857b;font-size:10px;display:flex;justify-content:space-between}
+.modal-backdrop{position:fixed;inset:0;background:#020908c9;backdrop-filter:blur(9px);z-index:10;display:none;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex;animation:rise .2s}.modal{width:min(540px,100%);max-height:92vh;overflow:auto;border:1px solid #62f5c544;border-radius:22px;background:linear-gradient(145deg,#102a26,#0a1720);box-shadow:0 0 65px #2ce2ae22,0 30px 90px #0009;padding:25px}.modal-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:20px}.modal h2{font:800 31px 'Barlow Condensed';margin:0}.modal-top p{font-size:11px;color:var(--muted);margin:5px 0}.close{border:1px solid var(--line);border-radius:10px;background:#ffffff09;color:white;width:35px;height:35px;cursor:pointer;font-size:18px}.close:hover{color:var(--mint);box-shadow:0 0 15px #62f5c533}
+.field{margin:13px 0}.field label{display:block;font-size:10px;color:#a6c4ba;letter-spacing:1px;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid #ffffff1b;background:#071a18;color:white;border-radius:10px;padding:12px 13px;font:500 13px Inter;outline:none}.field input:focus,.field select:focus{border-color:var(--mint);box-shadow:0 0 0 3px #62f5c51b}.field select option{background:#10231f}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.team-label{font-size:10px;letter-spacing:1.5px;color:var(--mint);font-weight:800;margin:18px 0 8px}.team-label.blue{color:#82b5ff}.submit{width:100%;border:0;border-radius:12px;padding:14px;margin-top:15px;background:linear-gradient(100deg,#48dba9,#5b9dff);color:#041511;font-size:12px;font-weight:900;letter-spacing:1px;cursor:pointer;transition:.2s}.submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px #49dcb866}.hint{font-size:10px;color:var(--muted);line-height:1.5;margin-top:10px}
+.toast{position:fixed;z-index:30;bottom:25px;left:50%;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#123d30;border:1px solid #62f5c577;color:#eafff6;padding:13px 20px;border-radius:13px;font-size:12px;box-shadow:0 0 35px #62f5c544;transition:.35s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:25;width:100%;height:100%}
+@media(max-width:760px){header{padding:20px 17px}.hero{padding-top:30px;display:block}.hero-tag{display:inline-block;margin-top:18px}.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:28px}.content-grid{grid-template-columns:1fr}main{padding:10px 16px 50px}.modes{gap:10px}.mode{padding:18px;min-height:150px}.mode h3{font-size:25px}.header-right{font-size:10px}}
+@media(max-width:430px){.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:span 2}.modes{grid-template-columns:1fr}.mode{min-height:130px}.form-grid{grid-template-columns:1fr}.brand strong{font-size:20px}}
+
+.player-tools{display:grid;grid-template-columns:1fr auto;gap:10px;margin:14px 0 13px}
+.player-tools input{min-width:0;border:1px solid #ffffff1b;background:#071a18;color:white;border-radius:10px;padding:12px 13px;font:500 13px Inter;outline:none}
+.player-tools input:focus{border-color:var(--mint);box-shadow:0 0 0 3px #62f5c51b}
+.add-player{border:0;border-radius:10px;padding:0 16px;background:linear-gradient(100deg,#48dba9,#5b9dff);color:#041511;font-size:11px;font-weight:900;cursor:pointer;transition:.2s}
+.add-player:hover{transform:translateY(-2px);box-shadow:0 7px 20px #49dcb855}
+.roster{display:flex;flex-wrap:wrap;gap:8px;min-height:34px}
+.player-chip{display:flex;align-items:center;gap:8px;border:1px solid #62f5c533;background:#62f5c50c;border-radius:999px;padding:7px 10px 7px 12px;color:#dffff4;font-size:11px;font-weight:700}
+.player-chip button{border:0;background:none;color:#83a99c;font-size:15px;cursor:pointer;padding:0 1px;line-height:1}
+.player-chip button:hover{color:#ff9999}
+.roster-empty{font-size:11px;color:var(--muted);padding:8px 0}
+.layout-note{font-size:10px;color:var(--muted);margin-top:10px;line-height:1.5}
+.section-block{margin-top:30px}
+@media(max-width:430px){.player-tools{grid-template-columns:1fr}.add-player{padding:12px}}
+
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<header>
+  <div class="brand"><div class="logo">⚽</div><div><small>OBERSTUFENRAUM PRESENTS</small><strong>FOOSBALL ARENA</strong></div></div>
+  <div class="header-right"><span class="live"></span> ARENA ONLINE <span>·</span> SEASON 01</div>
+</header>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">THE TABLE IS YOURS</div><h1>SPIEL. KÄMPF.<br><span>STEIG AUF.</span></h1><p>Wer beherrscht den Kickertisch? Trag eure Matches ein und<br>kämpft euch an die Spitze der Rangliste.</p></div>
+    <div class="hero-tag">✦ &nbsp; DEINE SCHULE. DEINE LIGA.</div>
+  </section>
+  <section class="stats">
+    <div class="stat"><label>GESPIELTE MATCHES</label><strong id="totalMatches">0</strong></div>
+    <div class="stat"><label>AKTIVE SPIELER</label><strong id="totalPlayers">0</strong></div>
+    <div class="stat"><label>ERFASSTE SIEGE</label><strong><em id="totalWins">0</em></strong></div>
+  </section>
+  <div class="section-head"><h2>WÄHLE DEIN MATCH</h2><span>01 / MATCH CENTER</span></div>
+  <section class="modes">
+    <button class="mode" onclick="openModal('1v1')"><div class="mode-icon">⚔️</div><h3>HEAD TO HEAD · 1 VS. 1</h3><p>Ein Spieler. Ein Gegner. Ein Gewinner.</p><span class="arrow">↗</span></button>
+    <button class="mode" onclick="openModal('2v2')"><div class="mode-icon">🛡️</div><h3>TEAM BATTLE · 2 VS. 2</h3><p>Stellt euer Duo zusammen und dominiert.</p><span class="arrow">↗</span></button>
+  </section>
+
+  <section class="card section-block" id="playerManager">
+    <div class="section-head"><div><h2>👥 SPIELER VERWALTEN</h2><span style="display:block;margin-top:5px">Namen einmal hinzufügen und bei Matches bequem auswählen.</span></div><span id="rosterCount">0 SPIELER</span></div>
+    <form class="player-tools" id="addPlayerForm">
+      <input id="newPlayerName" maxlength="24" placeholder="Neuen Spielernamen eingeben …" autocomplete="off" required>
+      <button class="add-player" type="submit">＋ SPIELER HINZUFÜGEN</button>
+    </form>
+    <div class="roster" id="roster"><div class="roster-empty">Noch keine Spieler angelegt. Füge oben eure Namen hinzu.</div></div>
+    <div class="layout-note">Tipp: Namen aus der Spielerliste erscheinen beim Eintragen eines Matches als Vorschläge. Neue Namen, die du direkt im Match eintippst, werden ebenfalls automatisch übernommen.</div>
+  </section>
+  <datalist id="playerOptions"></datalist>
+
+  <div class="content-grid">
+    <section class="card">
+      <div class="section-head"><h2>🏆 HALL OF FAME</h2><span>TOP 3</span></div>
+      <div class="podium" id="podium"><div class="empty" style="grid-column:1/-1">Noch keine Legenden.<br>Tragt euer erstes Match ein!</div></div>
+      <div class="section-head"><h2>RANGLISTE</h2><span>LIVE RANKING ↗</span></div>
+      <div class="table-wrap"><table><thead><tr><th>#</th><th>SPIELER</th><th>SIEGE</th><th>SPIELE</th><th>QUOTE</th></tr></thead><tbody id="leaderboard"><tr><td colspan="5" class="empty">Noch keine Ergebnisse vorhanden.</td></tr></tbody></table></div>
+    </section>
+    <section class="card">
+      <div class="section-head"><h2>LETZTE MATCHES</h2><button class="muted-btn" onclick="render()">↻ AKTUALISIEREN</button></div>
+      <div id="history" class="history-list"><div class="empty">Hier erscheinen eure letzten Spiele.</div></div>
+      <div style="border-top:1px solid var(--line);margin-top:20px;padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div style="font-size:11px;font-weight:800">ARENA MANAGEMENT</div><div style="font-size:10px;color:var(--muted);margin-top:4px">Alle Daten liegen lokal in diesem Browser.</div></div><button class="danger-btn" onclick="resetData()">DATEN ZURÜCKSETZEN</button></div>
+    </section>
+  </div>
+</main>
+<footer><span>FOOSBALL ARENA © 2026 · OBERSTUFENRAUM</span><span>PLAY FAIR. PLAY HARD.</span></footer>
+
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modal">
+  <div class="modal-top"><div><div class="eyebrow">MATCH REGISTRATION</div><h2 id="modalTitle">NEUES MATCH</h2><p id="modalSub">Tragt die Spieler und das Ergebnis ein.</p></div><button class="close" onclick="closeModal()">×</button></div>
+  <form id="matchForm">
+    <div id="playersFields"></div>
+    <div class="team-label">ERGEBNIS · TORE</div>
+    <div class="form-grid"><div class="field"><label id="scoreLabelA">SPIELER 1</label><input id="scoreA" type="number" min="0" max="99" value="10" required></div><div class="field"><label id="scoreLabelB">SPIELER 2</label><input id="scoreB" type="number" min="0" max="99" value="7" required></div></div>
+    <div class="hint">Der Gewinner wird automatisch anhand des höheren Spielstands ermittelt. Bei Gleichstand kann kein Match gespeichert werden.</div>
+    <button class="submit" type="submit">✦ MATCH SPEICHERN & SIEG FEIERN</button>
+  </form>
+ </div>
+</div>
+<div class="toast" id="toast">🏆 Match erfolgreich eingetragen!</div>
+<script>
+const KEY='foosball_arena_matches_v1';
+let matches=load(), mode='1v1';
+const ROSTER_KEY='foosball_arena_players_v1';
+let roster=loadRoster();
+function loadRoster(){try{return JSON.parse(localStorage.getItem(ROSTER_KEY))||[]}catch(e){return []}}
+function saveRoster(){localStorage.setItem(ROSTER_KEY,JSON.stringify(roster))}
+function addPlayer(name){
+ const clean=name.trim().replace(/\s+/g,' ');
+ if(!clean)return false;
+ if(roster.some(n=>n.toLocaleLowerCase('de')===clean.toLocaleLowerCase('de')))return false;
+ roster.push(clean);roster.sort((a,b)=>a.localeCompare(b,'de'));saveRoster();renderRoster();return true;
+}
+function renderRoster(){
+ const box=document.getElementById('roster'),list=document.getElementById('playerOptions');
+ document.getElementById('rosterCount').textContent=roster.length+' SPIELER';
+ box.innerHTML=roster.length?roster.map((n,i)=>`<span class="player-chip">${esc(n)}<button type="button" title="${esc(n)} entfernen" onclick="removePlayer(${i})">×</button></span>`).join(''):'<div class="roster-empty">Noch keine Spieler angelegt. Füge oben eure Namen hinzu.</div>';
+ list.innerHTML=roster.map(n=>`<option value="${esc(n)}"></option>`).join('');
+}
+function removePlayer(i){
+ const name=roster[i];if(!name)return;
+ if(!confirm('Spieler „'+name+'“ aus der Namensliste entfernen? Bereits gespeicherte Spielergebnisse bleiben erhalten.'))return;
+ roster.splice(i,1);saveRoster();renderRoster();
+}
+document.getElementById('addPlayerForm').addEventListener('submit',e=>{
+ e.preventDefault();const input=document.getElementById('newPlayerName');
+ if(addPlayer(input.value)){input.value='';showToast('✓ Spieler zur Namensliste hinzugefügt.')}
+ else showToast('Dieser Name ist bereits in der Liste oder ungültig.');
+});
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
+function save(){localStorage.setItem(KEY,JSON.stringify(matches))}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function initials(s){return s.trim().split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase()}
+function openModal(m){
+ mode=m;document.getElementById('modalTitle').textContent=m==='1v1'?'HEAD TO HEAD · 1 VS. 1':'TEAM BATTLE · 2 VS. 2';
+ document.getElementById('modalSub').textContent=m==='1v1'?'Zwei Spieler treten gegeneinander an.':'Vier Spieler. Zwei Teams. Ein gemeinsamer Sieg.';
+ const f=document.getElementById('playersFields');
+ f.innerHTML=m==='1v1'?`
+ <div class="team-label">PLAYER ONE</div><div class="field"><label>SPIELER 1 · NAME</label><input id="p1" maxlength="24" placeholder="Name eingeben" required autocomplete="off" list="playerOptions" list="playerOptions"></div>
+ <div class="team-label blue">PLAYER TWO</div><div class="field"><label>SPIELER 2 · NAME</label><input id="p2" maxlength="24" placeholder="Name eingeben" required autocomplete="off" list="playerOptions" list="playerOptions"></div>`:`
+ <div class="team-label">🟢 TEAM A</div><div class="form-grid"><div class="field"><label>SPIELER 1</label><input id="p1" maxlength="24" placeholder="Name" required autocomplete="off" list="playerOptions" list="playerOptions"></div><div class="field"><label>SPIELER 2</label><input id="p2" maxlength="24" placeholder="Name" required autocomplete="off" list="playerOptions" list="playerOptions"></div></div>
+ <div class="team-label blue">🔵 TEAM B</div><div class="form-grid"><div class="field"><label>SPIELER 3</label><input id="p3" maxlength="24" placeholder="Name" required autocomplete="off" list="playerOptions" list="playerOptions"></div><div class="field"><label>SPIELER 4</label><input id="p4" maxlength="24" placeholder="Name" required autocomplete="off" list="playerOptions" list="playerOptions"></div></div>`;
+ document.getElementById('scoreLabelA').textContent=m==='1v1'?'SPIELER 1':'TEAM A';
+ document.getElementById('scoreLabelB').textContent=m==='1v1'?'SPIELER 2':'TEAM B';
+ document.getElementById('modal').classList.add('open');setTimeout(()=>document.getElementById('p1').focus(),100);
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.getElementById('matchForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const names=[1,2,...(mode==='2v2'?[3,4]:[])].map(i=>document.getElementById('p'+i).value.trim());
+ if(names.some(n=>!n)){alert('Bitte alle Spielernamen eintragen.');return}
+ if(new Set(names.map(n=>n.toLocaleLowerCase('de'))).size!==names.length){alert('Jeder Spieler darf in einem Match nur einmal vorkommen.');return}
+ const a=Number(document.getElementById('scoreA').value),b=Number(document.getElementById('scoreB').value);
+ if(a===b){alert('Bei Gleichstand gibt es keinen Sieger. Bitte ein eindeutiges Ergebnis eintragen.');return}
+ names.forEach(addPlayer);
+ matches.unshift({id:Date.now(),mode,names,scoreA:a,scoreB:b,winner:a>b?'A':'B',date:new Date().toISOString()});
+ save();closeModal();render();celebrate();showToast('🏆 Sieg eingetragen! Glückwunsch an '+(a>b?(mode==='1v1'?names[0]:names[0]+' & '+names[1]):(mode==='1v1'?names[1]:names[2]+' & '+names[3]))+'!');
+ e.target.reset();
+});
+function getStats(){
+ const map={};
+ matches.forEach(m=>{
+  m.names.forEach((name,i)=>{
+   const key=name.toLocaleLowerCase('de');
+   if(!map[key])map[key]={name,wins:0,losses:0,games:0};
+   const p=map[key];p.games++;
+   const won=m.mode==='1v1'?(m.winner==='A'?i===0:i===1):(m.winner==='A'?i<2:i>=2);
+   if(won)p.wins++;else p.losses++;
+  });
+ });
+ return Object.values(map).sort((a,b)=>b.wins-a.wins||((b.wins/Math.max(1,b.games))-(a.wins/Math.max(1,a.games)))||b.games-a.games||a.name.localeCompare(b.name,'de'));
+}
+function render(){
+ const players=getStats(),total=matches.length;
+ document.getElementById('totalMatches').textContent=total;
+ document.getElementById('totalPlayers').textContent=players.length;
+ document.getElementById('totalWins').textContent=players.reduce((s,p)=>s+p.wins,0);
+ const podium=document.getElementById('podium');
+ if(!players.length)podium.innerHTML='<div class="empty" style="grid-column:1/-1">Noch keine Legenden.<br>Tragt euer erstes Match ein!</div>';
+ else{
+  const order=[1,0,2],classes=['second','first','third'],medals=['🥈','👑','🥉'];
+  podium.innerHTML=order.map((idx,pos)=>{const p=players[idx];return `<div class="podium-item ${classes[pos]}">${p?`<div class="podium-avatar">${medals[pos]}</div><div class="podium-name" title="${esc(p.name)}">${esc(p.name)}</div><div class="podium-wins">${p.wins} ${p.wins===1?'Sieg':'Siege'}</div><div class="podium-block">${idx+1}</div>`:`<div class="podium-avatar">—</div><div class="podium-name">Noch frei</div><div class="podium-wins">0 Siege</div><div class="podium-block">${idx+1}</div>`}</div>`}).join('');
+ }
+ document.getElementById('leaderboard').innerHTML=players.length?players.map((p,i)=>`<tr><td class="rank">${i+1<10?'0':''}${i+1}</td><td class="player">${esc(p.name)}</td><td style="font-weight:800">${p.wins}</td><td>${p.games}</td><td class="winrate">${Math.round(p.wins/p.games*100)}%</td></tr>`).join(''):'<tr><td colspan="5" class="empty">Noch keine Ergebnisse vorhanden.</td></tr>';
+ const hist=document.getElementById('history');
+ hist.innerHTML=matches.length?matches.slice(0,8).map(m=>{
+  const teamA=m.mode==='1v1'?m.names[0]:m.names.slice(0,2).join(' & ');
+  const teamB=m.mode==='1v1'?m.names[1]:m.names.slice(2,4).join(' & ');
+  const winner=m.winner==='A'?teamA:teamB;
+  return `<div class="match"><div><strong>${esc(teamA)} <span style="color:var(--muted)">vs.</span> ${esc(teamB)}</strong><small>${m.mode} · ${new Date(m.date).toLocaleDateString('de-DE')} · Sieger: ${esc(winner)}</small></div><div class="score">${m.scoreA} : ${m.scoreB}</div></div>`;
+ }).join(''):'<div class="empty">Hier erscheinen eure letzten Spiele.</div>';
+}
+function resetData(){if(!matches.length)return;if(confirm('Wirklich alle Matches und Statistiken löschen? Diese Aktion kann nicht rückgängig gemacht werden.')){matches=[];save();render();showToast('Alle Matchdaten wurden zurückgesetzt.')}}
+let toastTimer;
+function showToast(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3800)}
+function celebrate(){
+ const c=document.getElementById('confetti'),ctx=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+ const bits=Array.from({length:180},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.4,vx:(Math.random()-.5)*5,vy:2+Math.random()*5,size:3+Math.random()*5,rot:Math.random()*6,vr:(Math.random()-.5)*.2,h:Math.random()*160+110}));
+ let frame=0;function draw(){ctx.clearRect(0,0,c.width,c.height);bits.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.vy+=.025;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=`hsl(${p.h},90%,65%)`;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*1.7);ctx.restore()});if(++frame<150)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height)}draw();
+}
+window.addEventListener('resize',()=>{const c=document.getElementById('confetti');c.width=innerWidth;c.height=innerHeight});
+renderRoster();
+render();
+</script>
+</body>
+</html>
